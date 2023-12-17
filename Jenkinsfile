@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh(script: 'docker compose run --build nmap')
+                sh(script: 'docker compose run nmap')
             }
         }
         stage('Finish') {
