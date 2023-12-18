@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Start App') {
             steps {
-                sh(script: 'docker compose up')
+                sh(script: 'docker compose run nmap -V')
             }
             post {
                 success {
