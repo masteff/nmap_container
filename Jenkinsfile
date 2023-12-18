@@ -7,15 +7,22 @@ pipeline {
                 echo "$GIT_BRANCH"
             }
         }
-        stage('Building') {
-            steps {
-                echo 'building...'
-                sleep(2)
-            }
-        }
         stage('Docker Build') {
             steps {
-                sh(script: 'docker compose run --build nmap -V')
+                sh(script: 'docker compose build nmap')
+            }
+        }
+        stage('Start App') {
+            steps {
+                sh(script: 'docker compose up')
+            }
+            post {
+                success {
+                    echo "App started"
+                }
+                failure {
+                    eco "App could not start"
+                }
             }
         }
         stage('Finish') {
@@ -23,6 +30,11 @@ pipeline {
                 sleep(2)
                 echo 'finished'
             }
+        }
+    }
+    post {
+        always {
+            sh(script: 'docker compose down')
         }
     }
 }
