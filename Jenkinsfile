@@ -27,7 +27,7 @@ pipeline {
         }
         stage('List') {
             steps {
-                sh(script: 'docker compose ps')
+                sh(script: 'docker compose ps -a')
             }
         }
     }
