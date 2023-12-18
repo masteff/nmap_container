@@ -25,11 +25,9 @@ pipeline {
                 }
             }
         }
-        stage('Finish') {
+        stage('List') {
             steps {
-                sleep(2)
-                echo 'finished'
-            }
+                sh(script: 'docker compose ps')
         }
     }
     post {
