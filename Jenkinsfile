@@ -33,7 +33,7 @@ pipeline {
     }
     post {
         always {
-            sh(script: 'docker compose rm -f')
+            sh(script: 'docker compose rm -f nmap')
         }
     }
 }
