@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Start App') {
             steps {
-                sh(script: 'docker compose run nmap -V')
+                sh(script: 'docker compose run --rm nmap -V')
             }
             post {
                 success {
@@ -33,7 +33,7 @@ pipeline {
     }
     post {
         always {
-            sh(script: 'docker compose rm -s -f nmap')
+            sh(script: 'docker compose version')
         }
     }
 }
